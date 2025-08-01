@@ -69,6 +69,7 @@
         2. postcss
         3. postcss-pxtorem
         4. vite-plugin-mock
+        5. jsonwebtoken
 
 - vite配置
     - 配置postcss
@@ -85,6 +86,12 @@
 - git 提交规范
 
 ## 功能模块
+
+- 登录注册
+    1. 登录页面
+    2. 登录接口
+    3. 登录状态管理
+
 
 
 
@@ -103,6 +110,17 @@
     1. postcss-pxtorem 自动将px转换为rem
     2. lib-flexible 自动根据屏幕宽度设置html的font-size
 
+- 使用了JWT完成了用户登录鉴权
+    1. 登录成功后，将token存储在localStorage中
+    2. 每次请求都在请求头中携带token
+    3. 然后创建了useUserStore保存了用户是否登录的状态
+
+
 
 
 ## 项目遇到过什么问题
+
+- Zustand 状态丢失问题
+    1. 问题描述：当我刷新页面的时候，Zustand 中的状态会丢失
+    2. 问题原因：Zustand 中的状态是存储在内存中的，当页面刷新的时候，内存中的状态就会丢失
+    3. 解决方法：使用 Zustand 中的 persist 中间件，将状态存储在 localStorage 中(或者在useUserStore状态管理中直接判断是否存在token，不要固定使用false)
