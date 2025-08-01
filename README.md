@@ -83,3 +83,26 @@
 - user-scalable=no  移动端不缩放
 
 - git 提交规范
+
+## 功能模块
+
+
+
+
+## 项目亮点
+
+- 刷新不跳转
+    当我在这个页面刷新之后不会跳转到首页去，在会在当前的页面
+    在MainLayout中， useLocation() 监听路由变化
+
+- CSS原子化
+    直接在App.css中定义一些常用的CSS样式这样就不用在每个组件中都写了
+
+- 自动适配所有移动端
+    使用了postcss + lib-flexible这两个技术
+    1. postcss-pxtorem 自动将px转换为rem
+    2. lib-flexible 自动根据屏幕宽度设置html的font-size
+
+
+
+## 项目遇到过什么问题
