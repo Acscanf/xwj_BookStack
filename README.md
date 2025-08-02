@@ -139,6 +139,9 @@
     组件卸载时，直接使用disconnect 释放资源，防止内存泄漏
 
 
+- deepseek引入聊天功能
+    在Chat组件中引入deepseek的api，实现聊天功能，当用户发送消息时，调用deepseek的api，将用户的消息发送给deepseek，deepseek会返回一个回复，将回复显示在页面上。
+
 
 ## 性能优化
 
@@ -147,6 +150,12 @@
     2. 使用方法：使用IntersectionObserver，在图片加载完成之后，将图片的src属性设置为图片的真实地址，这样就可以显示图片了
 
 ## 用户体验
+
+- 输入框
+    - 自动聚焦 .focus()
+    - 有提示词  placeholder="请输入内容"
+    - 必须输入内容 required
+
 
 
 
@@ -186,3 +195,22 @@
     解决方法：
     1. 不使用Mock.Random.image生成图片
     2. 使用Lorem Picsum服务生成图片
+
+- 多次设置setState，只存入一次信息
+    1.问题描述：
+        在Chat组件里，我输入消息后用setMessages更新状态，AI回复时也用setMessages更新状态。但实际运行时，我的消息会被AI的回复覆盖，导致聊天界面只显示AI的回答，而我的输入消失了。
+    2.问题原因：
+        根本原因是React的状态更新机制导致的：
+        批处理更新：React会把同一个事件循环里的多次setState（比如连续两次setMessages）合并成一次更新，而不是立即分别执行。
+        闭包陷阱：由于JavaScript的闭包特性，连续调用的setMessages可能会基于相同的旧状态计算，导致后面的更新覆盖前面的结果。
+    3.解决方法：
+        使用函数式更新，让每次setMessages都能拿到最新的状态，避免覆盖问题。比如：
+        ```js
+        // 用户发送消息  
+        setMessages(prev => [...prev, userMsg]);  
+        // AI回复消息  
+        setMessages(prev => [...prev, aiReply]);  
+        ```
+    这样，React会确保两次更新按顺序执行，用户和AI的消息就都能正确显示了。
+
+    
