@@ -91,8 +91,7 @@
     1. 登录页面
     2. 登录接口
     3. 登录状态管理
-
-
+    4. 由于没有真实的后端所以用户名和密码固定为：admin 和 123
 
 
 
@@ -105,6 +104,10 @@
 - CSS原子化
     直接在App.css中定义一些常用的CSS样式这样就不用在每个组件中都写了
 
+- CSS模块化
+    对于前端来说，我们其实每个组件的样式基本是独立的，除非是全局的样式写在App.css或者是index.css中。所以我们应该将对应的组件的css模块化，命名为`name.module.css` 这样对应组件引入时写`import styles from "./name.modules.css"`就好了，name是你组件对应的名字，然后在对应的div、p、span...里面写`className={styles.name}`就可以引入对应的样式了，这样也不会发生不同组件之间因为命名相同的问题出现样式冲突了。
+
+
 - 自动适配所有移动端
     使用了postcss + lib-flexible这两个技术
     1. postcss-pxtorem 自动将px转换为rem
@@ -114,6 +117,8 @@
     1. 登录成功后，将token存储在localStorage中
     2. 每次请求都在请求头中携带token
     3. 然后创建了useUserStore保存了用户是否登录的状态
+    4. 登录状态管理中，使用了Zustand的中间件，将状态存储在localStorage中
+    
 
 
 
