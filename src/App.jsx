@@ -12,6 +12,7 @@ const Chat = lazy(() => import("@/pages/Chat"));
 const Shelf = lazy(() => import("@/pages/Shelf"));
 const Account = lazy(() => import("@/pages/Account"));
 const Login = lazy(() => import("@/pages/Login"));
+const Search = lazy(() => import("@/pages/Search"))
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           {/* 不带导航栏的路由 */}
           <Route element={<BlankLayout />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/search" element={<Search />} />
           </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
