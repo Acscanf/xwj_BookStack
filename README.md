@@ -143,3 +143,8 @@
     1. 问题描述：当我刷新页面的时候，Zustand 中的状态会丢失
     2. 问题原因：Zustand 中的状态是存储在内存中的，当页面刷新的时候，内存中的状态就会丢失
     3. 解决方法：使用 Zustand 中的 persist 中间件，将状态存储在 localStorage 中(或者在useUserStore状态管理中直接判断是否存在token，不要固定使用false)
+
+- Tabbar 组件遮挡页面内容
+    从React-vant的Tabbar组件的文档中可以知道，Tabbar组件是固定在底部的，所以当页面内容比较多的时候，会遮挡页面内容，解决方法是：
+    1. 给Tabbar组件添加一个`fixed={true}` 和`placeholder="true"`
+    2. 给Outlet组件添加一个`overflow: auto;`这样就不会出现遮挡的问题了

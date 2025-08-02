@@ -17,3 +17,10 @@
 i.iconfont{
   font-size: 50px;
 }
+.bgc {
+  background-color: #FAF7F0;
+}
+
+.of {
+  overflow: auto;
+}

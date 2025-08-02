@@ -39,13 +39,14 @@ const MainLayout = () => {
   }, []);
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex-1">
+      <div className="flex-1 bgc of">
         <Outlet />
       </div>
       {/* tabbar */}
       <Tabbar
         value={active}
         placeholder="true"
+        fixed={true}
         style={{background: "#F5F0E6"}}
         activeColor="#2B6F77"
         inactiveColor="#3A3226"
