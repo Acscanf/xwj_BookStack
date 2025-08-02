@@ -17,7 +17,7 @@ const tabs = [
   },
   {
     icon: <i className="iconfont icon-liaotian" />,
-    title: "智能聊天",
+    title: "AI助手",
     path: "/chat",
   },
   {
@@ -46,6 +46,9 @@ const MainLayout = () => {
       <Tabbar
         value={active}
         placeholder="true"
+        style={{background: "#F5F0E6"}}
+        activeColor="#2B6F77"
+        inactiveColor="#3A3226"
         onChange={(key) => {
           setActive(key);
           navigate(tabs[key].path);

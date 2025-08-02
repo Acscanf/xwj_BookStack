@@ -87,14 +87,19 @@
 
 ## 功能模块
 
-- 登录注册
+- Login组件 登录注册
     1. 登录页面
     2. 登录接口
     3. 登录状态管理
     4. 由于没有真实的后端所以用户名和密码固定为：admin 和 123
 
-- loading页面
+- Loading组件 加载中
     当页面加载缓慢的时候，会显示loading页面，当页面加载完成之后，会隐藏loading页面，用的是路由中的Suspense的fallback属性
+
+- MainLayout组件 主布局
+    有一个Tabbar组件，有四个选项卡，分别是书城、书架、AI助手、我的，这样对于APP里面可以动态切换路由
+
+- BlankLayout组件 空白布局，没有Tabbar组件
 
 
 
