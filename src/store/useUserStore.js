@@ -12,7 +12,7 @@ const useUserStore = create(
         // 登录方法
         const res = await doLogin({ username, password }); // 调用登录接口
         if (res.code === 1) {
-          // Dialog.alert({ message: `${res.message}` });
+          Dialog.alert({ message: `${res.message}` });
           return res.message;
         }
         const { token, data: user } = res; // 解构出token和user信息

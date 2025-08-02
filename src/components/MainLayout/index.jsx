@@ -6,19 +6,19 @@ import "@/assets/icon/iconfont.css"; // 引入图标库
 
 const tabs = [
   {
-    icon: <i className="iconfont icon-icon_shuchengnor" />,
+    icon: <i className="iconfont icon-shouye" />,
     title: "书城",
     path: "/discover",
+  },
+  {
+    icon: <i className="iconfont icon-icon_shuchengnor" />,
+    title: "书架",
+    path: "/Shelf",
   },
   {
     icon: <i className="iconfont icon-liaotian" />,
     title: "智能聊天",
     path: "/chat",
-  },
-  {
-    icon: <i className="iconfont icon-iconyihuifu-" />,
-    title: "书架",
-    path: "/Shelf",
   },
   {
     icon: <i className="iconfont icon-wode" />,
