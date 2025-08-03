@@ -1,0 +1,74 @@
+.container {
+  height: 100%;
+}
+.user {
+  background-color: #f0d3b0ff;
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 70px;
+}
+.nickname {
+  font-size: 36px;
+  font-weight: 500;
+  color: #5a4a3a; /* 深棕色，与背景形成舒适对比 */
+}
+
+.level {
+  font-size: 28px;
+  color: #8c7b6b; /* 中等棕色，比昵称浅一个层次 */
+  margin-top: 8px;
+}
+
+.slogan {
+  font-size: 24px;
+  color: #a89988; /* 浅灰棕色，保持可读性同时弱化显示 */
+  margin-top: 8px;
+}
+
+.mt2 {
+  margin-top: 8px;
+}
+.mt3 {
+  margin-top: 12px;
+}
+.ml2 {
+    width: 686px;
+    height: 200px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+.ml1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.ml1 span {
+    font-size: 24px;
+    color: #a89988;
+}
+.ml1 span:first-child {
+    font-size: 50px;
+    color: #5a4a3a;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.ml4 {
+  margin-left: 16px;
+}
+
+.button {
+    width: 686px;
+    margin: 60px 30px 0px 30px;
+    border-radius: 15px;
+    font-size: 35px;
+}
+
+

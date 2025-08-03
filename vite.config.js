@@ -18,5 +18,14 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
+  },
+  server: {
+    proxy: {
+      '/api/doubao': {
+        target: 'https://ark.cn-beijing.volces.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/doubao/, '/api/v3') // 注意这里
+      }
+    }
   }
 })
