@@ -1,0 +1,143 @@
+.detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: #f8f4e9; /* 改为米色背景 */
+  font-family: "Noto Serif SC", serif; /* 使用衬线字体 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 25px;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 35px;
+}
+
+.header span {
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 30px;
+    height: 400px;
+    width: 300px;
+    overflow: hidden; /* 隐藏超出容器的部分 */
+    border-radius: 40px;
+}
+
+.content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 关键属性 - 覆盖整个容器，保持比例 */
+}
+
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.author {
+    font-size: 30px;
+}
+
+.info {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.info div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info div span:first-child {
+    font-size: 45px;
+    font-weight: bold;
+    position: relative; /* 添加相对定位 */
+    padding-right: 35px; /* 为伪元素留出空间 */
+}
+
+.info div:nth-child(2) span:first-child,
+.info div:nth-child(3) span:first-child {
+    padding-right: 63px; /* 为伪元素留出空间 */
+}
+
+.info div:nth-child(1) span:first-child::before {
+    content: "分";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 5px; /* 微调垂直位置 */
+    font-size: 30px;
+    line-height: 1;
+    transform: translateY(-25%); /* 更精确的垂直对齐 */
+    font-weight: normal;
+}
+
+.info div:nth-child(2) span:first-child::before {
+    content: "万人";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 5px; /* 微调垂直位置 */
+    font-size: 30px;
+    line-height: 1;
+    transform: translateY(-25%); /* 更精确的垂直对齐 */
+    font-weight: normal;
+}
+
+.info div:nth-child(3) span:first-child::before {
+    content: "万字";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 5px; /* 微调垂直位置 */
+    font-size: 30px;
+    line-height: 1;
+    transform: translateY(-25%); /* 更精确的垂直对齐 */
+    font-weight: normal;
+}
+
+.info div span:nth-child(2) {
+    font-size: 30px;
+    color: gray;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+}
+
+.description span:first-child {
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.description span:nth-child(2) {
+    font-size: 30px;
+    line-height: 68px;
+}
+
+

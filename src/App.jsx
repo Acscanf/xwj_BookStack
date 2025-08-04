@@ -13,7 +13,8 @@ const Chat = lazy(() => import("@/pages/Chat"));
 const Shelf = lazy(() => import("@/pages/Shelf"));
 const Account = lazy(() => import("@/pages/Account"));
 const Login = lazy(() => import("@/pages/Login"));
-const Search = lazy(() => import("@/pages/Search"))
+const Search = lazy(() => import("@/pages/Search"));
+const Detail = lazy(() => import("@/pages/Detail"));
 
 function App() {
   const { isLogin } = useUserStore();
@@ -35,6 +36,7 @@ function App() {
           <Route element={<BlankLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/detail/:id" element={<Detail />} />
           </Route>
           <Route path="*" element={isLogin ? <Navigate to="/discover" replace /> : <Navigate to="/login" replace />} />
         </Routes>

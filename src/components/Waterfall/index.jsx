@@ -1,5 +1,6 @@
 import styles from "./waterfall.module.css";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookCard from "@/components/BookCard";
 
 const Waterfall = (props) => {
@@ -7,6 +8,7 @@ const Waterfall = (props) => {
   const [columns, setColumns] = useState([[], []]); // [left, right]
   const [heights, setHeights] = useState([0, 0]); // [leftHeight, rightHeight]
   const { books, fetchMore, loading } = props;
+  const navigate = useNavigate();
 
   // 初始化数据和更新数据
   useEffect(() => {
@@ -49,17 +51,41 @@ const Waterfall = (props) => {
     };
   }, [loading]);
 
+  // 点击图片进行跳转
+  // 事件委托：在父盒子（div.columns）上统一处理点击事件
+  const handleClickNavigate = (e) => {
+    // 确保点击的是 BookCard 或其子元素
+    const card = e.target.closest(".book-card-wrapper"); // 使用 class 而非 data-id
+    if (!card) return;
+
+    const id = card.dataset.id;
+    const book = books.find((book) => book.id === id);
+    navigate(`/detail/${id}`, { state: { book } });
+  };
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.columns}>
+      <div className={styles.columns} onClick={handleClickNavigate}>
         <div className={styles.column}>
           {columns[0].map((book) => (
-            <BookCard key={book.id} {...book} />
+            <div
+              key={book.id}
+              data-id={book.id}
+              className="book-card-wrapper" // 添加可点击的 wrapper
+            >
+              <BookCard {...book} />
+            </div>
           ))}
         </div>
         <div className={styles.column}>
           {columns[1].map((book) => (
-            <BookCard key={book.id} {...book} />
+            <div
+              key={book.id}
+              data-id={book.id}
+              className="book-card-wrapper" // 添加可点击的 wrapper
+            >
+              <BookCard {...book} />
+            </div>
           ))}
         </div>
       </div>
