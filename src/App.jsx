@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import useUserStore from "@/store/useUserStore";
 import "./App.css";
 
 import MainLayout from "@/components/MainLayout";
@@ -15,6 +16,7 @@ const Login = lazy(() => import("@/pages/Login"));
 const Search = lazy(() => import("@/pages/Search"))
 
 function App() {
+  const { isLogin } = useUserStore();
   return (
     <>
       <Suspense fallback={<Loading />}>
@@ -34,7 +36,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/search" element={<Search />} />
           </Route>
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={isLogin ? <Navigate to="/discover" replace /> : <Navigate to="/login" replace />} />
         </Routes>
       </Suspense>
     </>
