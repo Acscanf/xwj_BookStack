@@ -10,10 +10,11 @@ import { ArrowLeft, Plus, Cross } from "@react-vant/icons";
 const Detail = () => {
   const { id } = useParams();
   const { loading, detail, setDetail } = useDetailStore();
-  const { isShelf, addShelf, deleteShelf } = useShelfStore();
+  const { shelf, addShelf, deleteShelf } = useShelfStore();
   const { author, readers, wordCount, description } = detail;
   const navigate = useNavigate();
   const { state } = useLocation();
+
   // 直接使用传递过来的数据
   const book = state?.book;
   // 如果 state 中没有数据，可以在这里做降级处理
@@ -23,6 +24,8 @@ const Detail = () => {
     return;
   }
   const { title, rating, url } = book;
+  // 检查当前书籍是否在书架中
+  const isShelf = shelf.some((book) => book.id === id); // 直接计算
   // 调用 setDetail 方法获取详情数据
   useEffect(() => {
     setDetail();
@@ -56,7 +59,7 @@ const Detail = () => {
         <ArrowLeft onClick={handleClickBack} />
         {isShelf ? (
           <span onClick={handleClickDelete}>
-            <Cross  />
+            <Cross />
             移出书架
           </span>
         ) : (

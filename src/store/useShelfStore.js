@@ -1,17 +1,30 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware"; // 导入持久化中间件
+import { persist } from "zustand/middleware";  // 导入持久化中间件
 
 const useShelfStore = create(
   persist(
     (set) => ({
       shelf: [],
-      isShelf: false,
-      addShelf: (book) => set((state) => ({ shelf: [book, ...state.shelf], isShelf: true })),
-      deleteShelf: (id) => set((state) => ({ shelf: state.shelf.filter((book) => book.id !== id), isShelf: false })),
+      // 新增方法检查特定书籍是否在书架中
+      isInShelf: (id) => {
+        return (state) => state.shelf.some((book) => book.id === id);
+      },
+      addShelf: (book) => 
+        set((state) => {
+          // 检查是否已存在
+          if (state.shelf.some((item) => item.id === book.id)) {
+            return state;
+          }
+          return { shelf: [book, ...state.shelf] };
+        }),
+      deleteShelf: (id) => 
+        set((state) => ({ 
+          shelf: state.shelf.filter((book) => book.id !== id) 
+        })),
     }),
     {
-      name: "shelf-storage", // 存储的key
-      getStorage: () => localStorage, // 使用localStorage
+      name: "shelf-storage",
+      getStorage: () => localStorage,
     }
   )
 );
