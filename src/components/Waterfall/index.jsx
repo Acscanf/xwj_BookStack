@@ -12,7 +12,6 @@ const Waterfall = (props) => {
 
   // 初始化数据和更新数据
   useEffect(() => {
-    console.log("Books updated:", books);
 
     // 完全重置布局（不再区分新旧数据）
     const newColumns = [[], []];
