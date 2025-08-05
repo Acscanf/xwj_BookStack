@@ -13,6 +13,7 @@ import {
 } from "react-vant";
 import { FriendsO, StarO, SettingO, ClockO, GiftO } from "@react-vant/icons";
 import { generateAvatar } from "@/llm";
+import ThemeToggle from "@/components/ThemeToggle";
 import styles from "./account.module.css";
 
 const Account = () => {
@@ -122,6 +123,9 @@ const Account = () => {
         accept="image/*"
         onChange={handleFileChange}
       />
+      <div className={styles.themeToggle}>
+        <ThemeToggle />
+      </div>
       <div className={styles.user}>
         <Image
           round

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import useUserStore from "@/store/useUserStore";
+import { initTheme } from '@/utils/theme';
 import "./App.css";
 
 import MainLayout from "@/components/MainLayout";
@@ -18,6 +19,8 @@ const Detail = lazy(() => import("@/pages/Detail"));
 
 function App() {
   const { isLogin } = useUserStore();
+  // 初始化主题
+  initTheme();
   return (
     <>
       <Suspense fallback={<Loading />}>

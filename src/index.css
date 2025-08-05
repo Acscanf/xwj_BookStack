@@ -85,3 +85,35 @@ textarea {
   word-wrap: break-word;
   word-break: break-all;
 }
+
+/* 亮色模式 - 保持默认样式 */
+:root {
+  --background-color: initial;
+  --text-color: initial;
+}
+
+/* 暗黑模式 - 覆盖所有背景和文字 */
+.dark {
+  --background-color: #121212;
+  --text-color: #ffffff;
+}
+
+/* 强制整个页面背景变黑 */
+.dark,
+.dark body {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* 强制所有元素的背景变黑 */
+.dark * {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* 特殊处理输入框（可选，使其比纯黑稍亮） */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #1e1e1e !important;
+}
