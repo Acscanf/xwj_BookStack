@@ -87,3 +87,13 @@
 .dot3 {
   animation: wave 1.4s infinite 1.0s;
 }
+
+/* 强制所有字体变为白色 */
+:global(.dark) * {
+  color: var(--text-color) !important;
+}
+
+/* 强制所有元素的背景变黑 */
+:global(.dark) .wrapper {
+  background-color: var(--background-color) !important;
+}

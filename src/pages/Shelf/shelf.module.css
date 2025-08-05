@@ -59,3 +59,22 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+/* 强制所有字体变为白色 */
+:global(.dark) * {
+  color: var(--text-color) !important;
+}
+
+/* 强制所有元素的背景变黑 */
+:global(.dark) .shelf {
+  background-color: var(--background-color) !important;
+}
+
+
+:global(.dark) .book,
+:global(.dark) .h1{
+  background-color: #323131ff !important;
+  background: #323131ff !important;
+}
+
+

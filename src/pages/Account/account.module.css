@@ -78,4 +78,45 @@
   z-index: 1;
 }
 
+/* 强制所有字体变为白色 */
+:global(.dark) * {
+  color: var(--text-color) !important;
+}
+
+/* 强制所有元素的背景变黑 */
+:global(.dark) .container {
+  background-color: var(--background-color) !important;
+}
+
+
+:global(.dark) .user,
+:global(.dark) .ml4,
+:global(.dark) .ml2,
+:global(.dark) .nickname ,
+:global(.dark) .level,
+:global(.dark) .slogan,
+:global(.dark) .ml1,
+:global(.dark) .ml1 span{
+  background-color: #323131ff !important;
+}
+
+:global(.dark) {
+  --rv-cell-background-color: #323131ff !important;
+  --rv-cell-border-color: #323131ff !important;
+  --rv-action-sheet-item-background: #323131ff !important;
+  --rv-action-sheet-cancel-padding-color: #323131ff !important;
+  --rv-dialog-background-color: #323131ff !important;
+  --rv-active-color: var(--background-color) !important;
+}
+
+/* 修改确认按钮背景色 */
+:global(.dark) :global(.rv-dialog__confirm) {
+  background-color: #323131ff !important;
+}
+
+/* 修改取消按钮背景色 */
+:global(.dark) :global(.rv-dialog__cancel) {
+  background-color: #323131ff !important;
+}
+
 

@@ -46,3 +46,21 @@
   line-height: normal;         /* 确保垂直居中 */
   vertical-align: middle;
 }
+
+/* 强制所有字体变为白色 */
+:global(.dark) * {
+  color: var(--text-color) !important;
+}
+
+/* 强制所有元素的背景变黑 */
+:global(.dark) .discover,
+:global(.dark) .inputBox {
+  background-color: var(--background-color) !important;
+}
+
+
+:global(.dark) .input{
+  background-color: #323131ff !important;
+}
+
+

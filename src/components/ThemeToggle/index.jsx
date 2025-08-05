@@ -27,7 +27,7 @@ function ThemeToggle() {
       {isDark ? (
         <i className='iconfont icon-a-yueliangwanshang' fontSize={20} />
       ) : (
-        <i className='iconfont icon-taiyang' fontSize={20} />
+        <i className='iconfont icon-taiyang-copy' fontSize={20} />
       )}
     </button>
   );

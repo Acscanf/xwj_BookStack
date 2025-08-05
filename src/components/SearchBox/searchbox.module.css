@@ -70,3 +70,13 @@
 }
 
 
+/* 强制所有元素的背景变黑 */
+:global(.dark) .wrapper{
+  background-color: var(--background-color) !important;
+}
+
+
+:global(.dark) .input{
+  background-color: #323131ff !important;
+}
+

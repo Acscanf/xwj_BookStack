@@ -79,3 +79,7 @@
   background: white;
   /* 不需要 flex-grow，描述部分保持自然高度 */
 }
+
+:global(.dark) .description{
+  background-color: #323131ff !important;
+}

@@ -11,3 +11,12 @@
     cursor: 'pointer';
     transition: 'all 0.3s ease';
 }
+
+:global(.dark) .themeButton {
+    background-color: #323131ff !important;
+}
+
+:global(.dark) .themeButton .iconfont {
+    background-color: #323131ff !important;
+    fill: #323131ff !important; /* 如果图标是 SVG，修改 fill 而不是 background */
+}

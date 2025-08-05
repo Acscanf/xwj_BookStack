@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Tabbar } from "react-vant";
 import { useNavigate, useLocation } from 'react-router-dom'
+import styles from './mainLayout.module.css'
 import "@/assets/icon/iconfont.css"; // 引入图标库
 
 const tabs = [
@@ -47,7 +48,7 @@ const MainLayout = () => {
         value={active}
         placeholder="true"
         fixed={true}
-        style={{background: "#F5F0E6"}}
+        className={styles.tabbar}
         activeColor="#2B6F77"
         inactiveColor="#3A3226"
         onChange={(key) => {

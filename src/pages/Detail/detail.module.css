@@ -141,3 +141,10 @@
 }
 
 
+
+/* 强制所有元素的背景变黑 */
+:global(.dark) .detail {
+  background-color: var(--background-color) !important;
+}
+
+

@@ -78,3 +78,16 @@
 .deleteSpan span:nth-child(2) {
   padding-left: 10px;
 }
+
+/* 强制所有字体变为白色 */
+:global(.dark) * {
+  color: var(--text-color) !important;
+}
+
+/* 强制所有元素的背景变黑 */
+:global(.dark) .container,
+:global(.dark) .list {
+  background-color: var(--background-color) !important;
+}
+
+

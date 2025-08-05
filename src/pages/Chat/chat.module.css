@@ -13,11 +13,8 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  overflow-y: auto;
   padding: 30px 75px 0 75px;
   background-color: #f8f4e9;
-  background-image: linear-gradient(#f8f4e9 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 115, 85, 0.1) 1px, transparent 1px);
   background-size: 100% 2em, 40px 100%;
   background-position: 0 1.4em;
   line-height: 2em;
@@ -173,4 +170,36 @@
   font-family: "Noto Serif SC", "SimSun", "宋体", serif;
   background-color: #8b7355;
   color: white;
+}
+
+
+/* 强制所有字体变为白色 */
+:global(.dark) * {
+  color: var(--text-color) !important;
+  --rv-input-placeholder-text-color:var(--text-color) !important;
+}
+
+:global(.dark) .chatArea {
+  background-color: var(--background-color) !important;
+  border-image-source: none !important;
+  border-left: 15px solid #323131ff !important;
+  border-right: 15px solid #323131ff !important;
+  border-bottom: 15px solid #323131ff !important;
+}
+
+:global(.dark) .inputArea {
+  background-color: var(--background-color) !important;
+}
+
+:global(.dark) .text,
+:global(.dark) .message,
+:global(.dark) .h1,
+:global(.dark) .input,
+:global(.dark) .sendButton{
+  background-color: #323131ff !important;
+  background:#323131ff !important;
+}
+
+:global(.dark) {
+  --rv-input-background-color: #323131ff !important;
 }

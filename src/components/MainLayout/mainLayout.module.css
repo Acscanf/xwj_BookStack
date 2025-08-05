@@ -1,0 +1,8 @@
+.tabbar {
+  --rv-tabbar-background-color: #F5F0E6;
+}
+
+:global(.dark) .tabbar {
+  --rv-tabbar-background-color: #323131ff !important;
+  --rv-tabbar-item-active-background-color: #121212 !important;
+}
