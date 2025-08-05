@@ -12,17 +12,15 @@ const Waterfall = (props) => {
 
   // 初始化数据和更新数据
   useEffect(() => {
-    // 只处理新添加的书籍
-    const processedCount = columns[0].length + columns[1].length;
-    const newBooks = books.slice(processedCount);
+    console.log("Books updated:", books);
 
-    const newColumns = [[...columns[0]], [...columns[1]]];
-    let newHeights = [...heights];
+    // 完全重置布局（不再区分新旧数据）
+    const newColumns = [[], []];
+    let newHeights = [0, 0];
 
-    for (let book of newBooks) {
-      // 估计图片高度，实际高度可能在图片加载后确定
-      const estimatedHeight = book.height || 300; // 默认值
-
+    // 处理所有书籍（从头开始计算）
+    books.forEach((book) => {
+      const estimatedHeight = book.height || 300;
       if (newHeights[0] <= newHeights[1]) {
         newColumns[0].push(book);
         newHeights[0] += estimatedHeight;
@@ -30,11 +28,11 @@ const Waterfall = (props) => {
         newColumns[1].push(book);
         newHeights[1] += estimatedHeight;
       }
-    }
+    });
 
     setColumns(newColumns);
     setHeights(newHeights);
-  }, [books]); // 当books变化时触发
+  }, [books]); // 当 books 变化时完全重建布局
 
   // 监听加载更多
   useEffect(() => {

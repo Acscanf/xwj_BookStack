@@ -87,6 +87,7 @@ const useBookStore = create((set, get) => ({
   books: books, // 图书列表
   page: 2, // 当前页码
   isLoading: false, // 是否正在加载
+  isRefreshing: false, // 是否正在刷新
   fetchMore: async () => {
     // 如果还在请求中，不在发起新的请求
     if (get().isLoading) return; // 如果正在加载，直接返回
@@ -101,6 +102,22 @@ const useBookStore = create((set, get) => ({
         page: state.page + 1, // 将页码加 1
         isLoading: false, // 设置正在加载状态为 false
       }));
+    }
+  },
+  // 刷新
+  refreshBooks: async () => {
+    set({ isRefreshing: true , books: [], isLoading: true}); // 设置正在刷新状态为 true
+    const res = await getBook(1); // 调用 getBook 函数获取图片列表数据
+    if (res.code === 0) {
+      // 如果请求成功
+      // 之前的状态
+      set({
+        // 更新状态
+        books: res.data, // 将新获取的书本列表数据添加到 books 数组中
+        page: 2, // 将页码加 1
+        isRefreshing: false, // 设置正在刷新状态为 false
+        isLoading: false, // 设置正在加载状态为 false
+      });
     }
   },
 }));
