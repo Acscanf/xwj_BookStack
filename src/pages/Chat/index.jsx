@@ -18,6 +18,8 @@ const Chat = () => {
   const [text, setText] = useState("");
   // 是否正在发送消息的状态
   const [isSending, setIsSending] = useState(false);
+  // 是否正在流式接收的状态
+  const [isStreaming, setIsStreaming] = useState(false);
   // 聊天消息列表的状态，包含初始示例消息
   const [messages, setMessages] = useState([
     {
@@ -66,6 +68,8 @@ const Chat = () => {
 
     // 设置发送状态
     setIsSending(true);
+    setIsStreaming(true);
+    
     // 创建用户消息对象
     const userMessage = {
       id: Date.now(),
@@ -76,33 +80,51 @@ const Chat = () => {
     // 清空输入框并添加用户消息到列表
     setText("");
     setMessages((prev) => [...prev, userMessage]);
+    
+    // 添加一个空的AI消息占位
+    const aiMessageId = Date.now() + 1;
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: aiMessageId,
+        role: "assistant",
+        content: "",
+      },
+    ]);
 
     try {
-      // 调用API获取AI回复
-      const newMessage = await chat([
-        {
-          role: "user",
-          content: text,
-        },
-      ]);
-
-      // 将AI回复添加到消息列表
-      setMessages((prev) => [
-        ...prev,
-        {
-          ...newMessage.data,
-          id: Date.now() + 1,
-        },
-      ]);
+      // 调用API获取AI回复（流式）
+      await chat(
+        [
+          {
+            role: "user",
+            content: text,
+          },
+        ],
+        undefined,
+        undefined,
+        undefined,
+        (streamText) => {
+          // 流式更新消息内容
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === aiMessageId ? { ...msg, content: streamText } : msg
+            )
+          );
+        }
+      );
     } catch (error) {
       // 错误处理
       Toast.fail({
         message: "发送失败，请重试",
         className: styles.toast,
       });
+      // 移除空的AI消息
+      setMessages((prev) => prev.filter((msg) => msg.id !== aiMessageId));
     } finally {
       // 无论成功失败，都取消发送状态
       setIsSending(false);
+      setIsStreaming(false);
     }
   };
 
@@ -126,7 +148,12 @@ const Chat = () => {
             {msg.role === "assistant" ? (
               <>
                 <SmileCommentO className={styles.icon} />
-                <div className={styles.text}>{msg.content}</div>
+                <div className={styles.text}>
+                  {msg.content}
+                  {isStreaming && msg.id === messages[messages.length - 1].id && (
+                    <span className={styles.cursor}>|</span>
+                  )}
+                </div>
               </>
             ) : (
               <>

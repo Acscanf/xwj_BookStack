@@ -10,7 +10,8 @@ export const chat = async (
   messages,
   api_url = DEEPSEEK_CHAT_API_URL,
   api_key = import.meta.env.VITE_DEEPSEEK_API_KEY,
-  model = "deepseek-chat"
+  model = "deepseek-chat",
+  onStream = null // 新增流式回调函数
 ) => {
   try {
     const response = await fetch(api_url, {
@@ -22,17 +23,58 @@ export const chat = async (
       body: JSON.stringify({
         model: model,
         messages,
-        stream: false,
+        stream: onStream ? true : false, // 根据是否有回调决定是否流式
       }),
     });
-    const data = await response.json();
-    return {
-      code: 0,
-      data: {
-        role: "assistant",
-        content: data.choices[0].message.content,
-      },
-    };
+
+    if (onStream) {
+      // 流式处理
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let fullText = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n').filter(line => line.trim() !== '');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.replace('data: ', '');
+            if (data === '[DONE]') continue;
+            
+            try {
+              const parsed = JSON.parse(data);
+              const content = parsed.choices[0]?.delta?.content || '';
+              fullText += content;
+              onStream(fullText); // 调用回调函数
+            } catch (err) {
+              console.error('解析流数据错误:', err);
+            }
+          }
+        }
+      }
+
+      return {
+        code: 0,
+        data: {
+          role: "assistant",
+          content: fullText,
+        },
+      };
+    } else {
+      // 非流式处理
+      const data = await response.json();
+      return {
+        code: 0,
+        data: {
+          role: "assistant",
+          content: data.choices[0].message.content,
+        },
+      };
+    }
   } catch (err) {
     return {
       code: 0,

@@ -172,6 +172,19 @@
   color: white;
 }
 
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.text {
+  white-space: pre-wrap; /* 保持换行和空格 */
+}
+
 
 /* 强制所有字体变为白色 */
 :global(.dark) * {
