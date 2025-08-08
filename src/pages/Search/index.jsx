@@ -84,8 +84,7 @@ const Search = () => {
       const itemText = itemElement.textContent; // 获取点击的搜索建议文本
       addSearchHistory(itemText); // 添加到搜索历史
       setQuery(""); // 清空搜索框（可选）
-      queryRef.current.value = "";
-      queryRef.current.focus();
+      queryRef.current.clear(); // 调用子组件的方法
     }
   };
   return (

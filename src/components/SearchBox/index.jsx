@@ -4,7 +4,7 @@ import {
   useState,
   useEffect,
   useMemo,
-  useImperativeHandle
+  useImperativeHandle,
 } from "react";
 import React from "react";
 import { ArrowLeft, Close, Search } from "@react-vant/icons";
@@ -48,6 +48,15 @@ const SearchBox = React.forwardRef((props, ref) => {
       clearQuery();
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    current: queryRef.current,
+    clear: () => {
+      setQuery("");
+      queryRef.current.value = "";
+      queryRef.current.focus();
+    },
+  }));
   return (
     <div className={styles.wrapper}>
       <Sticky className={styles.sticky}>
