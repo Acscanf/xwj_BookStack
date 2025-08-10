@@ -8,6 +8,7 @@ import MainLayout from "@/components/MainLayout";
 import BlankLayout from "@/components/BlankLayout";
 import Loading from "@/components/Loading";
 import AuthGuard from "@/components/AuthGuard";
+import BookContent from "@/components/BookContent";
 
 const Discover = lazy(() => import("@/pages/Discover"));
 const Chat = lazy(() => import("@/pages/Chat"));
@@ -40,6 +41,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/search" element={<Search />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/read" element={<BookContent />} />
           </Route>
           <Route path="*" element={isLogin ? <Navigate to="/discover" replace /> : <Navigate to="/login" replace />} />
         </Routes>
